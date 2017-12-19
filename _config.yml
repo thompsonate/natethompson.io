@@ -1,15 +1,15 @@
 # SITE CONFIGURATION
-baseurl: 
-url: "https://sylhare.github.io"
+baseurl:
+url: "http://www.natethompson.io"
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Type on Strap
+  title: Nate Thompson
   avatar: assets/img/triangle.svg
   favicon: assets/favicon.ico
   gravatar: # Email MD5 hash
-  description: "A website with blog posts and pages" # used by search engines
+  description: "Nate Thompson's website" # used by search engines
 
   # Header and footer text
   header_text: > #two or three lines to describe your site
@@ -20,25 +20,25 @@ theme_settings:
 
   # Icons
   rss: false
-  email_address: # Full email address, e.g. "sam@example.com"
+  email_address: "nate@natethompson.io"
   behance:
   bitbucket:
   dribbble:
   facebook:
   flickr:
   gitlab:
-  github: "sylhare"
+  github: "thompsonate"
   google_plus:
   instagram:
   keybase:
-  linkedin:  # Full URL
+  linkedin:  "https://www.linkedin.com/in/natecthompson/"
   pinterest:
   reddit:
   soundcloud:
   stack_exchange:  # Full URL
   steam:
   tumblr:
-  twitter: "twitter"
+  twitter: "nate_thompson_1"
   vimeo:
   wordpress:
   youtube:
@@ -48,7 +48,7 @@ theme_settings:
   disqus_shortname:
   katex: true # Enable if using math markup
   portfolio: true
-  search: true
+  search: false
   tags: true
 
 
