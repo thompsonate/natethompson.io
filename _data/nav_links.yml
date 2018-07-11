@@ -1,5 +1,7 @@
 - title: GitHub
   url: https://github.com/thompsonate
+  new_tab: true
 
 - title: Devpost
   url: https://devpost.com/thompsonate
+  new_tab: true

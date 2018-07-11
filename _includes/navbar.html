@@ -38,14 +38,14 @@
         {% endif %}
         {% endfor %}
 
-        {% assign links = site.data.nav_links %}
-        {% for link in links %}
-        <li>
-            <a class="clear" href="{{ link.url }}">
-                {{ link.title }}
-            </a>
-        </li>
-        {% endfor %}
+				{% assign links = site.data.nav_links %}
+				{% for link in links %}
+				<li>
+					<a class="clear" href="{{ link.url }}" {% if link.new_tab %} target="_blank" {% endif %}>
+						{{ link.title }}
+					</a>
+				</li>
+				{% endfor %}
 
         {% if site.theme_settings.portfolio %}
         <li>
