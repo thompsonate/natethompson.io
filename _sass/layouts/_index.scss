@@ -77,13 +77,9 @@
     }
 }
 
-.shifty-blurb {
+.project-large {
   height: 200px;
   width: 100%;
-  color: $shifty-heading-color;
-  background-color: $shifty-bg-color;
-  background-image: linear-gradient(120deg, $shifty-bg-color-secondary, $shifty-bg-color);
-  border-radius: 15px;
   position: relative;
 }
 .link-span {
@@ -100,7 +96,7 @@ div#project-icon {
   width: 40%;
   float: left;
 }
-.shifty-icon {
+.project-icon {
   width: 60%;
   position: relative;
   top: 50%;

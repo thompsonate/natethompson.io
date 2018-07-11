@@ -1,0 +1,12 @@
+- name: Shifty
+  tagline: A macOS menu bar app that gives you more control over Night Shift
+  link: https://shifty.natethompson.io
+  icon:
+    src: https://shifty.natethompson.io/images/shifty-color-256.png
+    alt: Shifty icon
+  class: shifty
+  background_css: |
+    color: #fff;
+    background-color: #f4a941;
+    background-image: linear-gradient(120deg, #4179f4, #f4a941);
+    border-radius: 15px;
