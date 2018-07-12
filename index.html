@@ -1,14 +1,54 @@
 ---
-layout: default
+layout: page
 title: Nate Thompson
+nav_title: Home
+nav_order: 1
 ---
-<div class="blurb">
-	<h1>Hi, I'm Nate Thompson!</h1>
-	<p>I don't have much of a website right now because I'm busy working on projects to showcase on it. In the meantime, check out my GitHub.</p>
 
-	<section class="mainButtons">
-		<a class="mainButtons width-150px" href="http://github.com/thompsonate">GitHub</a>
-		<a class="mainButtons width-150px" href="mailto:nate@natethompson.io">Email</a>
-		<a class="mainButtons width-150px" href="/resume.pdf">Resume</a>
-	</section>
+{% assign projects = site.data.projects.large %}
+{% for project in projects %}
+<div class="project-large" style="
+    color: {{ project.text_color }};
+    background-color: {{ project.image.background_color }};
+    {% if project.image.generate %}
+    background-image: {{ project.image.generate }};
+    {% else %}
+    background-image: url({{ project.image.url }});
+    {% endif %}
+  "}</style>
+  <div>
+    <div class="project-icon"><img src="{{ project.icon.url }}" alt="{{ project.icon.alt }}"></div>
+    <div class="project-text">
+      <h2>{{ project.name }}</h2>
+      <p>{{ project.tagline }}</p>
+      <a href="{{ project.link }}">
+        <span></span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<br>
+<br>
+
+<div class="hackathons">
+  <h2>Hackathons</h2>
+  <hr>
+  <div class="project-grid">
+
+  {% assign projects = site.data.projects.hackathons %}
+  {% for project in projects %}
+  <div class="project-small">
+    <div style="
+    background-image: url('{{ project.image.url }}');
+    background-size: auto 200px;
+    background-color: {{ project.image.background_color }}
+    "></div>
+    <h4>{{ project.title }}</h4>
+    <p>{{ project.description.primary }}</p>
+    <p>{{ project.description.secondary }}</p>
+    <a href="{{ project.link.url }}">{{ project.link.title }}</a>
+  </div>
+{% endfor %}
 </div>

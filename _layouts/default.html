@@ -1,26 +1,11 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<title>{{ page.title }}</title>
-			<!-- link to main stylesheet -->
-			<link rel="stylesheet" type="text/css" href="/css/main.css">
-			{% include analytics.html %}
-		</head>
-		<!-- <header>
-			<nav>
-	    		<ul>
-	        		<li><a href="/">Home</a></li>
-		        	<li><a href="/about">About</a></li>
-	        		<li><a href="/resume">Resume</a></li>
-							<li><a href="http://github.com/thompsonate">GitHub</a></li>
-	    		</ul>
-			</nav>
-		</header> -->
-		<body>
-			<div class="container">
-
-			{{ content }}
-
-			</div><!-- /.container -->
-		</body>
-	</html>
+<html>
+  {% include head.html %}
+  <body>
+    {% include navbar.html %}
+    <div class="content">
+      {{ content }}
+    </div>
+    {% include footer.html %}
+  </body>
+</html>
