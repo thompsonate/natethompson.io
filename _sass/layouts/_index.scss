@@ -83,42 +83,102 @@
   position: relative;
   box-shadow: 0 3px 8px rgba(0,0,0,0.35);
   border-radius: 15px;
-}
-.link-span {
-  position:absolute;
-  width:100%;
-  height:100%;
-  top:0;
-  left: 0;
+  overflow: hidden;
 
-  z-index: 1;
+  span {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .project-icon {
+    height: 200px;
+    width: 40%;
+    float: left;
+    img {
+      width: 60%;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .project-text {
+    height: 200px;
+    width: 60%;
+    margin: 0 0 0 40%;
+    padding-right: 10%;
+    text-align: left;
+    h2 {
+      margin: 0;
+      padding-top: 40px;
+    }
+    p {
+      margin-top: 10px;
+    }
+  }
 }
-div#project-icon {
-  height: 200px;
-  width: 40%;
-  float: left;
+
+
+.hackathons {
+  h2 {
+    margin-bottom: 0;
+  }
+  hr {
+    margin: 0;
+  }
 }
-.project-icon {
-  width: 60%;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+
+.project-grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: -10px;
+
+  .project-small {
+    flex-basis: 48%;
+    margin-top: 30px;
+
+    div {
+      height: 200px;
+      width: 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+    }
+
+    h4 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 3px;
+    }
+
+    p:nth-of-type(2) {
+      color: gray;
+    }
+  }
 }
-div#project-text {
-  height: 200px;
-  width: 60%;
-  margin: 0 0 0 40%;
-  padding-right: 10%;
-  text-align: left;
+
+@media (max-width: $break) {
+  .project-grid {
+    display: block;
+    .project-small {
+      flex-basis: 100%;
+      margin: 0 0 10px 0;
+    }
+  }
 }
-.project-name {
-  margin: 0;
-  padding-top: 40px;
-}
-.project-tagline {
-  padding-top: 10px;
-}
+
+
 
 // Pagination
 .pagination .button {
