@@ -9,13 +9,16 @@ theme_settings:
   avatar: assets/img/triangle.svg
   favicon: assets/favicon.ico
   gravatar: # Email MD5 hash
-  description: "Nate Thompson's website" # used by search engines
+  description: "Hi, I'm Nate! Computer Science student at Georgia State University. macOS & iOS developer." # used by search engines
 
   # Header and footer text
   header_text:
   header_text_feature_image:
   footer_text: >
-   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+   Made with 🌭 by Nate Thompson.
+   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with
+   <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>.
+   Hosted on <a href="https://github.com/thompsonate/natethompson.io">GitHub Pages.</a>
 
   # Icons
   rss: false
