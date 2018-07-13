@@ -93,20 +93,26 @@ body {
   overflow: hidden;
 
   span {
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
     left: 0;
     z-index: 1;
   }
 
   .project-icon {
     height: 175px;
-    width: 40%;
+    width: 35%;
+    @media (min-width: 1000px) {
+      width: 40%;
+    }
     float: left;
     img {
-      width: 60%;
+      width: 65%;
+      @media (min-width: 1000px) {
+        width: 60%;
+      }
       max-height: 100px;
       max-width: 100px;
       box-sizing: content-box;
@@ -119,9 +125,14 @@ body {
 
   .project-text {
     height: 100%;
-    width: 60%;
-    margin: 0 0 0 40%;
-    padding-right: 10%;
+    width: 65%;
+    margin: 0 0 0 35%;
+    padding-right: 5%;
+    @media (min-width: 1000px) {
+      width: 60%;
+      margin: 0 0 0 40%;
+      padding-right: 10%;
+    }
     text-align: left;
     h2 {
       font-size: 24pt;
@@ -137,7 +148,6 @@ body {
 
 .hackathons {
   h3 {
-    // font-size: 20pt;
     margin-bottom: 0;
   }
   hr {
@@ -159,6 +169,7 @@ body {
     div {
       height: 175px;
       width: 100%;
+      position: relative;
       background-position: center center;
       background-repeat: no-repeat;
       overflow: hidden;
@@ -177,6 +188,14 @@ body {
 
     a {
       font-size: 12pt;
+      span {
+        position: absolute;
+        width:100%;
+        height:100%;
+        top:0;
+        left: 0;
+        z-index: 1;
+      }
     }
 
     p:nth-of-type(2) {

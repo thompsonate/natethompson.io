@@ -43,7 +43,9 @@ nav_order: 1
     background-image: url('{{ project.image.url }}');
     background-size: auto 200px;
     background-color: {{ project.image.background_color }}
-    "></div>
+    ">
+      <a href="{{ project.link.url }}"><span></span></a>
+    </div>
     <h4>{{ project.name }}</h4>
     <p>{{ project.description.primary }}</p>
     <p>{{ project.description.secondary }}</p>
