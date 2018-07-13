@@ -4,6 +4,10 @@ body {
   float: none !important;
 }
 
+article {
+  padding-top: 0;
+}
+
 
 // Header text feature
 .call-out {
@@ -84,11 +88,49 @@ body {
     }
 }
 
+
+.bio {
+  margin: 35px 0;
+  padding: 0 6%;
+  height: 175px;
+  width: 100%;
+
+  background-color: #f0efef;
+  border-color: #979797;
+  border-width: 1px;
+  border-style: solid;
+
+  position: relative;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.20);
+  border-radius: 15px;
+  overflow: hidden;
+  h4 {
+    font-family: "Menlo", "Courier New", "Courier", monospace;
+    font-size: 16pt;
+    margin: 15px 0;
+  }
+  li {
+    margin: 0;
+    font-size: 12pt;
+    font-family: "Menlo", "Courier New", "Courier", monospace;
+    position: relative;
+    list-style: none;
+  }
+    li:before {
+      content: "*";
+      position: absolute;
+      left: -20px;
+      top: -1px;
+    }
+  }
+
+
 .project-large {
+  margin: 35px 0;
   height: 175px;
   width: 100%;
   position: relative;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.20);
   border-radius: 15px;
   overflow: hidden;
 

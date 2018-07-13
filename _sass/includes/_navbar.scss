@@ -24,8 +24,8 @@
     .site-title {
         float: left;
         font-weight: bold;
-        font-size: 1em;
-        line-height: 1.5;
+        font-size: 20pt;
+        line-height: 1.3;
     }
 
     nav {
@@ -62,7 +62,7 @@
 }
 
 
-// To clear things when we float the element inisde nav and ul 
+// To clear things when we float the element inisde nav and ul
 .clear {
     *zoom: 1;
 
