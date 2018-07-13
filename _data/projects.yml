@@ -1,6 +1,6 @@
 large:
   - name: Shifty
-    tagline: A macOS menu bar app that gives you more control over Night Shift
+    tagline: A macOS menu bar app that gives you more control over Night Shift.
     link: https://shifty.natethompson.io
     icon:
       url: /assets/img/shifty-icon.png
@@ -13,7 +13,7 @@ large:
 hackathons:
   - name: SiriQuery
     description:
-      primary: The world's first web client for Siri
+      primary: The world’s first web client for Siri.
       secondary: Won second place at HackCU 2017 in Boulder, CO
     link:
       title: View on Devpost
@@ -23,7 +23,7 @@ hackathons:
 
   - name: Telephone Pictionary
     description:
-      primary: A party game that combines Pictionary with the confusion of Telephone
+      primary: A party game that combines Pictionary with the confusion of Telephone.
       secondary: Won “Most Technical Hack” at DerbyHacks 2017 in Louisville, KY
     link:
       title: View on Devpost
@@ -34,7 +34,7 @@ hackathons:
 
   - name: Nametag AR
     description:
-      primary: An AR app that detects and displays the names of people you've met
+      primary: An AR app that detects and displays the names of people you’ve met.
       secondary: Built at HackGT 2017 in Atlanta, GA
     link:
       title: View on Devpost
@@ -45,7 +45,7 @@ hackathons:
 
   - name: Twitter Assistants
     description:
-      primary: A twitter bot that automatically interfaces with Siri, Alexa, and Google Assistant
+      primary: A twitter bot that automatically interfaces with Siri, Alexa, and Google Assistant.
       secondary: Built at MinneHack 2018 in Minneapolis, MN
     link:
       title: View on Devpost
