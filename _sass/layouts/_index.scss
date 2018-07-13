@@ -1,3 +1,10 @@
+body {
+  max-width: 1300px;
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+
 // Header text feature
 .call-out {
     @extend %padding-regular;
@@ -78,7 +85,7 @@
 }
 
 .project-large {
-  height: 200px;
+  height: 175px;
   width: 100%;
   position: relative;
   box-shadow: 0 3px 8px rgba(0,0,0,0.35);
@@ -95,11 +102,14 @@
   }
 
   .project-icon {
-    height: 200px;
+    height: 175px;
     width: 40%;
     float: left;
     img {
       width: 60%;
+      max-height: 100px;
+      max-width: 100px;
+      box-sizing: content-box;
       position: relative;
       top: 50%;
       left: 50%;
@@ -108,14 +118,15 @@
   }
 
   .project-text {
-    height: 200px;
+    height: 100%;
     width: 60%;
     margin: 0 0 0 40%;
     padding-right: 10%;
     text-align: left;
     h2 {
+      font-size: 24pt;
       margin: 0;
-      padding-top: 40px;
+      padding-top: 30px;
     }
     p {
       margin-top: 10px;
@@ -125,7 +136,8 @@
 
 
 .hackathons {
-  h2 {
+  h3 {
+    // font-size: 20pt;
     margin-bottom: 0;
   }
   hr {
@@ -145,7 +157,7 @@
     margin-top: 30px;
 
     div {
-      height: 200px;
+      height: 175px;
       width: 100%;
       background-position: center center;
       background-repeat: no-repeat;
@@ -159,7 +171,12 @@
     }
 
     p {
+      font-size: 12pt;
       margin-bottom: 3px;
+    }
+
+    a {
+      font-size: 12pt;
     }
 
     p:nth-of-type(2) {
