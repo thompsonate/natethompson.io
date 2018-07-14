@@ -28,12 +28,14 @@ nav_order: 1
   <div>
     <div class="project-icon"><img src="{{ project.icon.url }}" alt="{{ project.icon.alt }}"></div>
     <div class="project-text">
-      <h2>{{ project.name }}</h2>
-      <p>{{ project.tagline }}</p>
-      <a href="{{ project.link }}">
-        <span></span>
-      </a>
+        <div>
+            <h2>{{ project.name }}</h2>
+            <p>{{ project.tagline }}</p>
+        </div>
     </div>
+    <a href="{{ project.link }}">
+        <span></span>
+    </a>
   </div>
 </div>
 {% endfor %}

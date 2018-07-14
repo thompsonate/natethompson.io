@@ -104,10 +104,26 @@ article {
   box-shadow: 0 3px 8px rgba(0,0,0,0.20);
   border-radius: 15px;
   overflow: hidden;
+
+  @media (max-width: $break) {
+      min-height: 175px;
+      height: auto;
+      display: block;
+      overflow: auto;
+
+      padding: 0 6% 0 8%;
+      @media (max-width: 400px) {
+          padding: 0 6% 0 10%;
+      }
+  }
+
   h4 {
     font-family: "Menlo", "Courier New", "Courier", monospace;
     font-size: 16pt;
     margin: 15px 0;
+  }
+  ul {
+      margin-bottom: 15px;
   }
   li {
     margin: 0;
@@ -130,7 +146,7 @@ article {
   height: 175px;
   width: 100%;
   position: relative;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.20);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
   border-radius: 15px;
   overflow: hidden;
 
@@ -170,19 +186,37 @@ article {
     width: 65%;
     margin: 0 0 0 35%;
     padding-right: 5%;
+    position: absolute;
     @media (min-width: 1000px) {
       width: 60%;
       margin: 0 0 0 40%;
       padding-right: 10%;
     }
     text-align: left;
+    div {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
     h2 {
       font-size: 24pt;
       margin: 0;
-      padding-top: 30px;
+      @media (max-width: $break) {
+          font-size: 20pt;
+      }
     }
     p {
       margin-top: 10px;
+      @media (max-width: $break) {
+          font-size: 13pt;
+      }
+      @media (max-width: 550px) {
+          font-size: 12pt;
+      }
+      @media (max-width: 450px) {
+          font-size: 12pt;
+      }
     }
   }
 }
@@ -191,6 +225,9 @@ article {
 .hackathons {
   h3 {
     margin-bottom: 0;
+    @media (max-width: $break) {
+        font-size: 20pt;
+    }
   }
   hr {
     margin: 0;
@@ -249,9 +286,17 @@ article {
 @media (max-width: $break) {
   .project-grid {
     display: block;
+    margin: 15px auto 0 auto;
+    float: none;
+    max-width: 350px;
+
     .project-small {
       flex-basis: 100%;
       margin: 0 0 10px 0;
+
+      h4 {
+          font-size: 16pt;
+      }
     }
   }
 }
