@@ -45,7 +45,7 @@ hackathons:
 
   - name: Twitter Assistants
     description:
-      primary: A twitter bot that automatically interfaces with Siri, Alexa, and Google Assistant.
+      primary: A Twitter bot that automatically interfaces with Siri, Alexa, and Google Assistant.
       secondary: Built at MinneHack 2018 in Minneapolis, MN
     link:
       title: View on Devpost
