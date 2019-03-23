@@ -9,13 +9,13 @@ thumbnail: assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-hero.jpg
 I recently tried to implement drag and drop with `NSTableView` in a project and ran into a bunch of issues with finding resources that actually helped. Such is the life of a Cocoa developer. So here's my attempt at the _definitive guide_ to drag and drop with `NSTableView`. (This should also apply to `NSOutlineView`, since they have similar delegate methods.)
 <!-- break -->
 
-![Fruits App screenshot](/assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-app.png)
+![Fruits App screenshot]({{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-app.png)
 In this tutorial, you'll make an app that has two table views, each containing a list of fruits. By the end of the tutorial, you'll be able to:
 * drag a fruit name to the other table view to copy it over
 * drag and drop to reorder the items within a table view
 * drag the fruit names into other apps
 
-To get started, download the template Xcode project [here](/assets/xcode/TableViewDrag.zip). You can find the finished tutorial [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop).
+To get started, download the template Xcode project [here]({{ site.baseurl }}/assets/xcode/TableViewDrag.zip). You can find the finished tutorial [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop).
 
 <br>
 Drag and drop is implemented with a dragging pasteboard. When the drag starts, you write to the pasteboard. When the drag ends, you can read data from the pasteboard. `NSTableView` and `NSOutlineView` have delegate methods that make it (relatively) easy to deal with drag and drop for their rows. Let's jump right in!
@@ -98,12 +98,12 @@ func tableView(
 ```
 
 Now try dragging from the left table view to the right table view!
-<video autoplay loop playsinline muted src="/assets/img/blog/2019-03-23-nstableview-drag-and-drop/insert.mp4" type="video/mp4"></video>
+<video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/insert.mp4" type="video/mp4"></video>
 
 > Bonus: since it's registered for the `string` pasteboard type, you can highlight some text in another app and drag that into the right table view.
 
 <br>
-<video autoplay loop playsinline muted src="/assets/img/blog/2019-03-23-nstableview-drag-and-drop/dragfest.mp4" type="video/mp4"></video>
+<video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/dragfest.mp4" type="video/mp4"></video>
 <center>It's a drag fest!</center>
 
 <br>
@@ -174,7 +174,7 @@ When an instance of this object is written to the pasteboard, you can get the va
 ---
 Currently, if you drag a cell from the right table view into the right table view, it'll create a duplicate at the position. Let's change that so you can reorder the cells without duplicating.
 
-<video autoplay loop playsinline muted src="/assets/img/blog/2019-03-23-nstableview-drag-and-drop/reorder.mp4" type="video/mp4"></video>
+<video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/reorder.mp4" type="video/mp4"></video>
 <br>
 
 First, register the right table view for the dragged type you created. Modify the line you wrote earlier to:
@@ -226,7 +226,7 @@ This prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag
 ---
 Sometimes you might not want users to have as much control of where the data they're dropping lands. Maybe the table view is sorted or you want cells displayed in the order they were added. There's a way to make the whole table view highlight when items are dragged over it.
 
-<video autoplay loop playsinline muted src="/assets/img/blog/2019-03-23-nstableview-drag-and-drop/append.mp4" type="video/mp4"></video>
+<video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/append.mp4" type="video/mp4"></video>
 <br>
 
 Implement `tableView(_:validateDrop:proposedRow:proposedDropOperation:)` in `LeftTableViewController`. The line that does the magic here is this:
@@ -278,7 +278,7 @@ func tableView(
 ---
 I think dragging to Trash is kind of a gimmick unless you're writing a file manager, but it's fun and easy so here's how to do it.
 
-<video autoplay loop playsinline muted src="/assets/img/blog/2019-03-23-nstableview-drag-and-drop/delete.mp4" type="video/mp4"></video>
+<video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/delete.mp4" type="video/mp4"></video>
 <br>
 
 In `RightTableViewController`, add the following line to `viewDidLoad()`:
