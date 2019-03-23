@@ -12,10 +12,14 @@ layout: default
 
   <div class="posts">
     {% for post in paginator.posts %}
+    {% if post.hide != true %}
     <div class="post-teaser">
       {% if post.thumbnail %} 
       <div class="post-img">
-         <img src="{{ site.baseurl }}/{{ post.thumbnail }}">
+        <img src="{{ site.baseurl }}/{{ post.thumbnail }}">
+        <a href="{{ post.url | prepend: site.baseurl }}">
+          <span></span>
+        </a>
       </div>
       {% endif %}
       <span>
@@ -30,13 +34,18 @@ layout: default
             </p>
           </header>
           <div class="excerpt">
-            {{ post.content | strip_html | truncate: "250" }}
-            <!--<a class="button" href="{{ post.url | prepend: site.baseurl }}">
-              {{ site.theme_settings.str_continue_reading }}
-            </a>-->
+            {{ post.content  | split:'<!-- break -->' 
+              | first 
+              | replace: 'href="/assets',  'href="page_url" zzzz="/assets'
+              | replace: 'page_url', post.url
+             }}
           </div>
+          <a class="button" style="margin-top: 5px;" href="{{ post.url | prepend: site.baseurl }}">
+            {{ site.theme_settings.str_continue_reading }}
+          </a>
       </span>
     </div>
+    {% endif %}
     {% endfor %}
   </div>
 
