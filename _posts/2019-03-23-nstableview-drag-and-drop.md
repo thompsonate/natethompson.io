@@ -17,12 +17,24 @@ In this tutorial, you'll make an app that has two table views, each containing a
 To get started, download the template Xcode project [here]({{ site.baseurl }}/assets/xcode/TableViewDrag.zip). You can find the completed tutorial [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop).
 
 <br>
-## 🍎 Introduction
+## Table of Contents
+---
+* {% include link.html name="🍎 Introduction" %}
+* {% include link.html name="🍑 Writing to the Pasteboard" %}
+* {% include link.html name="🍊Dropping on a Table View to Insert" %}
+* {% include link.html name="🥭 Creating a Custom Pasteboard Type" %}
+* {% include link.html name="🍓 Writing Multiple Types to the Pasteboard" %}
+* {% include link.html name="🍇 Drag and Drop to Reorder Table Cells" %}
+* {% include link.html name="🍍 Dropping Onto the Entire Table View" %}
+* {% include link.html name="🥝 Dragging to Trash to Delete" %}
+
+
+{% include section.html name="🍎 Introduction" %}
 ---
 Drag and drop is implemented with a dragging pasteboard. When a drag starts, you write to the pasteboard. When a drag ends, you can read data from the pasteboard. `NSTableView` and `NSOutlineView` have delegate methods that make it (relatively) easy to deal with drag and drop for their rows. 
 
-<br>
-## 🍑 Writing to the Pasteboard
+
+{% include section.html name="🍑 Writing to the Pasteboard" %}
 ---
 The first delegate method to implement is `tableView(_:pasteboardWriterForRow:)` in `LeftTableViewController`. The function has a return type that conforms to the procotol `NSPasteboardWriting`. `NSString` does, so you can just cast the `String` to `NSString` and return that.
 ```swift
@@ -44,8 +56,8 @@ tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
 ```
 You can now drag from the left table view into other apps! Try dragging cells into TextEdit or Messages.
 
-<br>
-## 🍊Dropping on a Table View to Insert
+
+{% include section.html name="🍊Dropping on a Table View to Insert" %}
 ---
 Now you need to set up the right table view to accept drops on it. First, add this line to `viewDidLoad()` in `RightTableViewController`:
 ```swift
@@ -107,8 +119,8 @@ Now try dragging from the left table view to the right table view!
 <video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/dragfest.mp4" type="video/mp4"></video>
 <p style="text-align: center">It's a drag fest!</p>
 
-<br>
-## 🥭 Creating a Custom Pasteboard Type
+
+{% include section.html name="🥭 Creating a Custom Pasteboard Type" %}
 ---
 Create an extension of `NSPasteboard.PasteboardType`. This is a UTI string and should be a unique identifier.
 ```swift
@@ -117,8 +129,8 @@ extension NSPasteboard.PasteboardType {
 }
 ```
 
-<br>
-## 🍓 Writing Multiple Types to the Pasteboard
+
+{% include section.html name="🍓 Writing Multiple Types to the Pasteboard" %}
 ---
 In `PasteboardUtil.swift` there's a class `FruitPasteboardWriter`. Make the class conform to `NSPasteboardWriting` and add the following protocol stubs:
 ```swift
@@ -169,8 +181,8 @@ class FruitPasteboardWriter: NSObject, NSPasteboardWriting {
 ```
 When an instance of this object is written to the pasteboard, you can get the value for either (or both) type, depending on what you want to do. We'll get to that next.
 
-<br>
-## 🍇 Drag and Drop to Reorder Table Cells
+
+{% include section.html name="🍇 Drag and Drop to Reorder Table Cells" %}
 ---
 Currently, if you drag a cell from the right table view into the right table view, it'll create a duplicate at the position. Let's change that so you can reorder the cells without duplicating.
 
@@ -221,8 +233,8 @@ This implementation prioritizes `tableViewIndex` over `string`. As it's set up n
 
 > Note: `NSArray.move(with:to:)` and `NSPasteboardItem.integer(forType:)` are implemented in extensions, so check for those before you copy/paste and wonder why it doesn't work.
 
-<br>
-## 🍍 Dropping Onto the Entire Table View
+
+{% include section.html name="🍍 Dropping Onto the Entire Table View" %}
 ---
 Sometimes you might not want users to have as much control of where the data they're dropping lands. Maybe the table view is sorted or you want cells displayed in the order they were added. There's a way to make the whole table view highlight when items are dragged over it.
 
@@ -273,8 +285,8 @@ func tableView(
 }
 ```
 
-<br>
-## 🥝 Dragging to Trash to Delete
+
+{% include section.html name="🥝 Dragging to Trash to Delete" %}
 ---
 I think dragging to Trash is kind of a gimmick unless you're writing a file manager, but it's fun and easy so here's how to do it.
 
