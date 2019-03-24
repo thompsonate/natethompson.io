@@ -2,11 +2,10 @@
 layout: post
 title: Using Drag and Drop with NSTableView
 tags: [macOS, Tutorial]
-hide: true
 thumbnail: assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-hero.jpg
 ---
 
-I recently tried to implement drag and drop with `NSTableView` in a project and ran into a bunch of issues with finding resources that actually helped. Such is the life of a Cocoa developer. So here's my attempt at the _definitive guide_ to drag and drop with `NSTableView`. (This should also apply to `NSOutlineView`, since they have similar delegate methods.)
+I recently tried to implement drag and drop with `NSTableView` in a project and ran into a bunch of issues with finding resources that actually helped. Such is the life of a Cocoa developer. So here's my attempt at the _definitive guide_ to drag and drop with `NSTableView`. (This should also apply to `NSOutlineView`, since they work in a similar way.)
 <!-- break -->
 
 ![Fruits App screenshot]({{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-app.png)
@@ -15,15 +14,17 @@ In this tutorial, you'll make an app that has two table views, each containing a
 * drag and drop to reorder the items within a table view
 * drag the fruit names into other apps
 
-To get started, download the template Xcode project [here]({{ site.baseurl }}/assets/xcode/TableViewDrag.zip). You can find the finished tutorial [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop).
+To get started, download the template Xcode project [here]({{ site.baseurl }}/assets/xcode/TableViewDrag.zip). You can find the completed tutorial [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop).
 
 <br>
-Drag and drop is implemented with a dragging pasteboard. When the drag starts, you write to the pasteboard. When the drag ends, you can read data from the pasteboard. `NSTableView` and `NSOutlineView` have delegate methods that make it (relatively) easy to deal with drag and drop for their rows. Let's jump right in!
-
-<br>
-## 🍎 Writing to the Pasteboard
+## 🍎 Introduction
 ---
-The first function to implement is `tableView(_:pasteboardWriterForRow:)` in `LeftTableViewController`. The function returns a value of a type that conforms to the procotol `NSPasteboardWriting`. `NSString` does, so you can just cast the `String` to `NSString` and return that.
+Drag and drop is implemented with a dragging pasteboard. When a drag starts, you write to the pasteboard. When a drag ends, you can read data from the pasteboard. `NSTableView` and `NSOutlineView` have delegate methods that make it (relatively) easy to deal with drag and drop for their rows. 
+
+<br>
+## 🍑 Writing to the Pasteboard
+---
+The first delegate method to implement is `tableView(_:pasteboardWriterForRow:)` in `LeftTableViewController`. The function has a return type that conforms to the procotol `NSPasteboardWriting`. `NSString` does, so you can just cast the `String` to `NSString` and return that.
 ```swift
 func tableView(
     _ tableView: NSTableView, 
@@ -33,11 +34,11 @@ func tableView(
     return FruitManager.leftFruits[row] as NSString
 }
 ```
-Returning a non-nil value from this function will make the cell draggable. But you can't drop it on anything just yet. In order to be able to drag into other apps, drag's operation mask needs to be set to work outside the app.
-
 > For more information on `NSPasteboardWriting` and what Cocoa classes conform to it, check out the [documentation](https://developer.apple.com/documentation/appkit/nspasteboardwriting).
 
-Add a line to `viewDidLoad()` which sets the default operation mask for the tableView to `copy` for destinations outside the app:
+Returning a non-nil value from this function will make the cell draggable. But you can't drop it on anything just yet. In order to be able to drag into other apps, the drag's operation mask needs to be set to work outside the app.
+
+Add a line to `viewDidLoad()` which sets the default operation mask for the table view to `copy` for destinations outside the app:
 ```swift
 tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
 ```
@@ -56,7 +57,7 @@ This registers the table view to accept drags containing `string` types. Since y
 ### Validate the Drop
 Next, implement `tableView(_:validateDrop:proposedRow:proposedDropOperation:)`. This is called when a drag is hovering over the table view, before it has been dropped or canceled.
 
-In this function, you can specify how to respond to a proposed drop operation, which can be either on or above a cell. In this table view, the user will be allowed to drop items between cells to insert them. That means we want to allow proposed `above` drops but not respond to proposed `on` drops.
+In this function, you can specify how to respond to a proposed drop operation, which can be either on or above a cell. In this table view, the user will be allowed to drop items between cells to insert them. That means we want to allow proposed drops `above` but not respond to proposed drops `on`.
 ```swift
 func tableView(
     _ tableView: NSTableView,
@@ -76,7 +77,7 @@ func tableView(
 ### Accept the Drop
 The next function to implement is `tableView(_:acceptDrop:row:dropOperation:)`. This is where you'll handle the data from the dragging pasteboard after it's been dropped on the table view.
 
-First, get the array of pasteboard items drom the drop. Because multiple selection is allowed, multiple rows could be dropped at the same time. Each dragged row has its own pasteboard item, with each containing the string we set for the row.
+First, get the array of pasteboard items from the drop. Because table views support multiple selection, multiple rows could be dropped simultaneously. Each dragged row corresponds to a pasteboard item, with each item containing the string you set for the row.
 
 For each pasteboard item, get the string stored in it with the method `NSPasteboardItem.string(forType: NSPasteboard.PasteboardType)`.
 ```swift
@@ -104,7 +105,7 @@ Now try dragging from the left table view to the right table view!
 
 <br>
 <video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/dragfest.mp4" type="video/mp4"></video>
-<center>It's a drag fest!</center>
+<p style="text-align: center">It's a drag fest!</p>
 
 <br>
 ## 🥭 Creating a Custom Pasteboard Type
@@ -153,8 +154,7 @@ class FruitPasteboardWriter: NSObject, NSPasteboardWriting {
     }
 
     func pasteboardPropertyList(
-        forType type: NSPasteboard.PasteboardType)
-        -> Any?
+        forType type: NSPasteboard.PasteboardType) -> Any?
     {
         switch type {
         case .string:
@@ -177,12 +177,12 @@ Currently, if you drag a cell from the right table view into the right table vie
 <video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/reorder.mp4" type="video/mp4"></video>
 <br>
 
-First, register the right table view for the dragged type you created. Modify the line you wrote earlier to:
+First, register the right table view for the dragged type you created. Modify the line you wrote in `viewDidLoad()` earlier to:
 ```swift
 tableView.registerForDraggedTypes([.string, .tableViewIndex])
 ```
 
-Next, implement the `tableView(_:pasteboardWriterForRow:)` in `RightTableViewController` using the `FruitPasteboardWriter` you just made:
+Next, implement `tableView(_:pasteboardWriterForRow:)` in `RightTableViewController` using the `FruitPasteboardWriter` you just made:
 ```swift
 func tableView(
     _ tableView: NSTableView,
@@ -217,7 +217,7 @@ func tableView(
     return true
 }
 ```
-This prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag within the right table view, there will be values for `tableViewIndex` and `string`. Because the values for `tableViewIndex` are row numbers, it uses those to rearrange the array instead of just inserting at a new index.
+This implementation prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag within the right table view, there will be values for `tableViewIndex` and `string`. Because the values for `tableViewIndex` are row numbers, it uses those to rearrange the array instead of just inserting at a new index.
 
 > Note: `NSArray.move(with:to:)` and `NSPasteboardItem.integer(forType:)` are implemented in extensions, so check for those before you copy/paste and wonder why it doesn't work.
 
