@@ -2,6 +2,49 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    {% if page.layout == 'post' %}
+    
+        <!-- Meta properties for Blog Posts -->
+    
+        {% capture og-title %}
+            {{ page.title }} &mdash; Nate Thompson
+        {% endcapture %}
+    
+        {% capture og-description %}
+            {{ page.content | strip_html | truncate: '250' | strip }}
+        {% endcapture %}
+    
+        {% capture og-image %}
+            {{ site.url }}/{{ page.thumbnail }} 
+        {% endcapture %}
+    
+    {% else %}
+        
+        <!-- Meta properties for standard pages -->
+        
+        {% assign og-title = page.title %}
+    
+        {% assign og-description = site.description %}
+    
+        {% capture og-image %}
+            {{ site.url }}/assets/img/avatar.png
+        {% endcapture %}
+    
+    {% endif %}
+    
+    <title>{{ og-title }}</title>
+    <meta property="image" content="{{ og-image }}">
+    <meta property="description" content="{{ og-description }}">
+    
+    <meta property="og:title" content="{{ og-title }}">
+    <meta property="og:image" content="{{ og-image }}">
+    <meta property="og:description" content="{{ og-description }}">
+    
+    <meta property="twitter:title" content="{{ og-title }}">
+    <meta property="twitter:image" content="{{ og-image }}">
+    <meta property="twitter:description" content="{{ og-description }}">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- JQuery (used for bootstrap and jekyll search) -->
     <script src="{{ site.baseurl }}/assets/js/jquery-3.2.1.min.js" ></script>
     
