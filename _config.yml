@@ -21,7 +21,7 @@ theme_settings:
    Hosted on <a href="https://github.com/thompsonate/natethompson.io">GitHub Pages</a>.
 
   # Icons
-  rss: false
+  rss: true
   email_address: "nate@natethompson.io"
   behance:
   bitbucket:
@@ -47,7 +47,7 @@ theme_settings:
 
   # Scripts / Features
   google_analytics: UA-91065230-1 # Tracking ID, e.g. "UA-000000-01"
-  disqus_shortname:
+  disqus_shortname: natethompson
   katex: false # Enable if using math markup
   portfolio: false
   search: false
