@@ -19,14 +19,16 @@ To get started, download the template Xcode project [here]({{ site.baseurl }}/as
 <br>
 ## Table of Contents
 ---
-* {% include link.html name="🍎 Introduction" %}
-* {% include link.html name="🍑 Writing to the Pasteboard" %}
-* {% include link.html name="🍊Dropping on a Table View to Insert" %}
-* {% include link.html name="🥭 Creating a Custom Pasteboard Type" %}
-* {% include link.html name="🍓 Writing Multiple Types to the Pasteboard" %}
-* {% include link.html name="🍇 Drag and Drop to Reorder Table Cells" %}
-* {% include link.html name="🍍 Dropping Onto the Entire Table View" %}
-* {% include link.html name="🥝 Dragging to Trash to Delete" %}
+<ul style="list-style-type: none;">
+  <li>{% include link.html name="🍎 Introduction" %}</li>
+  <li>{% include link.html name="🍑 Writing to the Pasteboard" %}</li>
+  <li>{% include link.html name="🍊Dropping on a Table View to Insert" %}</li>
+  <li>{% include link.html name="🥭 Creating a Custom Pasteboard Type" %}</li>
+  <li>{% include link.html name="🍓 Writing Multiple Types to the Pasteboard" %}</li>
+  <li>{% include link.html name="🍇 Drag and Drop to Reorder Table Cells" %}</li>
+  <li>{% include link.html name="🍍 Dropping Onto the Entire Table View" %}</li>
+  <li>{% include link.html name="🥝 Dragging to Trash to Delete" %}</li>
+</ul>
 
 
 {% include section.html name="🍎 Introduction" %}
