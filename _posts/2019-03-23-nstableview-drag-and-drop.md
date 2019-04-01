@@ -25,7 +25,7 @@ To get started, download the template Xcode project [here]({{ site.baseurl }}/as
   <li>{% include link.html name="🍊Dropping on a Table View to Insert" %}</li>
   <li>{% include link.html name="🥭 Creating a Custom Pasteboard Type" %}</li>
   <li>{% include link.html name="🍓 Writing Multiple Types to the Pasteboard" %}</li>
-  <li>{% include link.html name="🍇 Drag and Drop to Reorder Table Cells" %}</li>
+  <li>{% include link.html name="🍇 Drag and Drop to Reorder Rows" %}</li>
   <li>{% include link.html name="🍍 Dropping Onto the Entire Table View" %}</li>
   <li>{% include link.html name="🥝 Dragging to Trash to Delete" %}</li>
 </ul>
@@ -107,7 +107,8 @@ func tableView(
     
     let fruits = items.compactMap{ $0.string(forType: .string) }
     FruitManager.rightFruits.insert(contentsOf: fruits, at: row)
-    tableView.reloadData()
+    tableView.insertRows(at: IndexSet(row...row + newFruits.count - 1),
+                         withAnimation: .slideDown)
     return true
 }
 ```
@@ -137,13 +138,11 @@ extension NSPasteboard.PasteboardType {
 In `PasteboardUtil.swift` there's a class `FruitPasteboardWriter`. Make the class conform to `NSPasteboardWriting` and add the following protocol stubs:
 ```swift
 func writableTypes(
-    for pasteboard: NSPasteboard) 
-    -> [NSPasteboard.PasteboardType] 
+    for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] 
 { }
 
 func pasteboardPropertyList(
-    forType type: NSPasteboard.PasteboardType) 
-    -> Any? 
+    forType type: NSPasteboard.PasteboardType) -> Any? 
 { }
 ```
 
@@ -184,7 +183,7 @@ class FruitPasteboardWriter: NSObject, NSPasteboardWriting {
 When an instance of this object is written to the pasteboard, you can get the value for either (or both) type, depending on what you want to do. We'll get to that next.
 
 
-{% include section.html name="🍇 Drag and Drop to Reorder Table Cells" %}
+{% include section.html name="🍇 Drag and Drop to Reorder Rows" %}
 ---
 Currently, if you drag a cell from the right table view into the right table view, it'll create a duplicate at the position. Let's change that so you can reorder the cells without duplicating.
 
@@ -206,7 +205,33 @@ func tableView(
     return FruitPasteboardWriter(fruit: FruitManager.rightFruits[row], at: row)
 }
 ```
+<br>
+### Destination Feedback Style
+Then, you'll want to rewrite `tableView(_:validateDrop:proposedRow:proposedDropOperation:)` and set the `draggingDestinationFeedbackStyle` based on the dragging source. The `gap` style works well when reordering rows in the table view. Otherwise, we'll keep using `regular`, which draws the insertion line if the drop operation is `above`.
+```swift
+func tableView(
+    _ tableView: NSTableView,
+    validateDrop info: NSDraggingInfo,
+    proposedRow row: Int,
+    proposedDropOperation dropOperation: NSTableView.DropOperation)
+    -> NSDragOperation
+{
+    guard let source = info.draggingSource as? NSTableView,
+        dropOperation == .above
+        else { return [] }
 
+    if source === tableView {
+        tableView.draggingDestinationFeedbackStyle = .gap
+    } else {
+        tableView.draggingDestinationFeedbackStyle = .regular
+    }
+    return .move
+}
+```
+> There's a bug in `NSTableView` that requires implementing `tableView(_:heightOfRow:)` to get the `gap` style to animate correctly.
+
+<br>
+### Move Rows
 Now you just need to get the table view indexes when the drag is dropped. Modify `tableView(_:acceptDrop:row:dropOperation)` so it looks like this:
 ```swift
 func tableView(
@@ -221,17 +246,20 @@ func tableView(
     let indexes = items.compactMap{ $0.integer(forType: .tableViewIndex) }
     if !indexes.isEmpty {
         FruitManager.rightFruits.move(with: IndexSet(indexes), to: row)
-        tableView.reloadData()
+        // move table view rows; see below
         return true
     }
     
     let fruits = items.compactMap{ $0.string(forType: .string) }
     FruitManager.rightFruits.insert(contentsOf: fruits, at: row)
-    tableView.reloadData()
+    tableView.insertRows(at: IndexSet(row...row + newFruits.count - 1),
+                         withAnimation: .slideDown)
     return true
 }
 ```
-This implementation prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag within the right table view, there will be values for `tableViewIndex` and `string`. Because the values for `tableViewIndex` are row numbers, it uses those to rearrange the array instead of just inserting at a new index.
+> Moving table view rows gets complicated with multiple selection. See the full code [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop/blob/9aaea3afaaadc77e760fc37ae6a413b6f01ce4e8/TableViewDrag/TableViewDrag/RightTableViewController.swift#L96).
+
+This implementation prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag within the right table view, there will be values for `tableViewIndex` and `string`. It uese the row number values for `tableViewIndex` to rearrange the array instead of just inserting at a new index.
 
 > Note: `NSArray.move(with:to:)` and `NSPasteboardItem.integer(forType:)` are implemented in extensions, so check for those before you copy/paste and wonder why it doesn't work.
 
@@ -282,7 +310,10 @@ func tableView(
     
     let fruits = items.compactMap{ $0.string(forType: .string) }
     FruitManager.leftFruits.append(contentsOf: fruits)
-    tableView.reloadData()
+    
+    let oldCount = tableView.numberOfRows
+    tableView.insertRows(at: IndexSet(oldCount...oldCount + newFruits.count - 1),
+                         withAnimation: .slideDown)
     return true
 }
 ```
@@ -318,7 +349,7 @@ func tableView(
         for index in indexes.reversed() {
             FruitManager.rightFruits.remove(at: index)
         }
-        tableView.reloadData()
+        tableView.removeRows(at: IndexSet(indexes), withAnimation: .slideUp)
     }
 }
 ```
