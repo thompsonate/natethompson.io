@@ -14,7 +14,7 @@ In this tutorial, you'll make an app that has two table views, each containing a
 * drag and drop to reorder the items within a table view
 * drag the fruit names into other apps
 
-To get started, download the template Xcode project [here]({{ site.baseurl }}/assets/xcode/TableViewDrag.zip). You can find the completed tutorial [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop).
+To get started, download the template Xcode project [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop/archive/template.zip). You can find the completed tutorial [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop).
 
 <br>
 ## Table of Contents
