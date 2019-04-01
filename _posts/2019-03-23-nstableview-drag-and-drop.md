@@ -243,10 +243,25 @@ func tableView(
     guard let items = info.draggingPasteboard.pasteboardItems
         else { return false }
     
-    let indexes = items.compactMap{ $0.integer(forType: .tableViewIndex) }
+    let indexes = items.compactMap{ $0.integer(forType: .tableViewIndex)
     if !indexes.isEmpty {
         FruitManager.rightFruits.move(with: IndexSet(indexes), to: row)
-        // move table view rows; see below
+
+        // Reordering with multiple selection enabled is hard:
+        // https://stackoverflow.com/a/26855499/7471873
+        tableView.beginUpdates()
+        var oldIndexOffset = 0
+        var newIndexOffset = 0
+        for oldIndex in oldIndexes {
+            if oldIndex < row {
+                tableView.moveRow(at: oldIndex + oldIndexOffset, to: row - 1)
+                oldIndexOffset -= 1
+            } else {
+                tableView.moveRow(at: oldIndex, to: row + newIndexOffset)
+                newIndexOffset += 1
+            }
+        }
+        tableView.endUpdates()
         return true
     }
     
@@ -257,8 +272,6 @@ func tableView(
     return true
 }
 ```
-> Moving table view rows gets complicated with multiple selection. See the full code [here](https://github.com/thompsonate/NSTableView-Drag-and-Drop/blob/9aaea3afaaadc77e760fc37ae6a413b6f01ce4e8/TableViewDrag/TableViewDrag/RightTableViewController.swift#L96).
-
 This implementation prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag within the right table view, there will be values for `tableViewIndex` and `string`. It uese the row number values for `tableViewIndex` to rearrange the array instead of just inserting at a new index.
 
 > Note: `NSArray.move(with:to:)` and `NSPasteboardItem.integer(forType:)` are implemented in extensions, so check for those before you copy/paste and wonder why it doesn't work.
