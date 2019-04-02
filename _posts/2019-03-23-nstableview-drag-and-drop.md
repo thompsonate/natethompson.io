@@ -22,7 +22,7 @@ To get started, download the template Xcode project [here](https://github.com/th
 <ul style="list-style-type: none;">
   <li>{% include link.html name="🍎 Introduction" %}</li>
   <li>{% include link.html name="🍑 Writing to the Pasteboard" %}</li>
-  <li>{% include link.html name="🍊Dropping on a Table View to Insert" %}</li>
+  <li>{% include link.html name="🍊 Dropping on a Table View to Insert" %}</li>
   <li>{% include link.html name="🥭 Creating a Custom Pasteboard Type" %}</li>
   <li>{% include link.html name="🍓 Writing Multiple Types to the Pasteboard" %}</li>
   <li>{% include link.html name="🍇 Drag and Drop to Reorder Rows" %}</li>
@@ -59,7 +59,7 @@ tableView.setDraggingSourceOperationMask(.copy, forLocal: false)
 You can now drag from the left table view into other apps! Try dragging cells into TextEdit or Messages.
 
 
-{% include section.html name="🍊Dropping on a Table View to Insert" %}
+{% include section.html name="🍊 Dropping on a Table View to Insert" %}
 ---
 Now you need to set up the right table view to accept drops on it. First, add this line to `viewDidLoad()` in `RightTableViewController`:
 ```swift
@@ -185,7 +185,7 @@ When an instance of this object is written to the pasteboard, you can get the va
 
 {% include section.html name="🍇 Drag and Drop to Reorder Rows" %}
 ---
-Currently, if you drag a cell from the right table view into the right table view, it'll create a duplicate at the position. Let's change that so you can reorder the cells without duplicating.
+Currently, if you drag a cell from the right table view into the right table view, it will create a duplicate. Let's change it so you can reorder the cells without duplicating. Plus, we'll make it animate a gap between the rows so it'll look really nice.
 
 <video autoplay loop playsinline muted src="{{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/reorder.mp4" type="video/mp4"></video>
 <br>
@@ -207,7 +207,7 @@ func tableView(
 ```
 <br>
 ### Destination Feedback Style
-Then, you'll want to rewrite `tableView(_:validateDrop:proposedRow:proposedDropOperation:)` and set the `draggingDestinationFeedbackStyle` based on the dragging source. The `gap` style works well when reordering rows in the table view. Otherwise, we'll keep using `regular`, which draws the insertion line if the drop operation is `above`.
+Then, you'll want to rewrite `tableView(_:validateDrop:proposedRow:proposedDropOperation:)` and set the `draggingDestinationFeedbackStyle` based on the dragging source. The `gap` style works well when reordering rows. For other dragging sources, we'll keep using `regular`, which draws the insertion line if the drop operation is `above`.
 ```swift
 func tableView(
     _ tableView: NSTableView,
@@ -216,11 +216,11 @@ func tableView(
     proposedDropOperation dropOperation: NSTableView.DropOperation)
     -> NSDragOperation
 {
-    guard let source = info.draggingSource as? NSTableView,
-        dropOperation == .above
-        else { return [] }
+    guard dropOperation == .above else { return [] }
 
-    if source === tableView {
+    if let source = info.draggingSource as? NSTableView,
+        source === tableView
+    {
         tableView.draggingDestinationFeedbackStyle = .gap
     } else {
         tableView.draggingDestinationFeedbackStyle = .regular
@@ -228,7 +228,7 @@ func tableView(
     return .move
 }
 ```
-> There's a bug in `NSTableView` that requires implementing `tableView(_:heightOfRow:)` to get the `gap` style to animate correctly.
+> There's a bug in `NSTableView` that requires implementing `tableView(_:heightOfRow:)` to get the `gap` style to animate correctly. This has already been set up in the template project.
 
 <br>
 ### Move Rows
@@ -272,7 +272,7 @@ func tableView(
     return true
 }
 ```
-This implementation prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag within the right table view, there will be values for `tableViewIndex` and `string`. It uese the row number values for `tableViewIndex` to rearrange the array instead of just inserting at a new index.
+This implementation prioritizes `tableViewIndex` over `string`. As it's set up now, if you drag within the right table view, there will be values for `tableViewIndex` and `string`. It uses the row number values for `tableViewIndex` to rearrange the array instead of just inserting at a new index.
 
 > Note: `NSArray.move(with:to:)` and `NSPasteboardItem.integer(forType:)` are implemented in extensions, so check for those before you copy/paste and wonder why it doesn't work.
 
@@ -299,9 +299,9 @@ func tableView(
     proposedDropOperation dropOperation: NSTableView.DropOperation)
     -> NSDragOperation
 {
-    guard let source = info.draggingSource as? NSTableView
-        else { return [] }
-    if source !== tableView {
+    if let source = info.draggingSource as? NSTableView,
+        source !== tableView
+    {
         tableView.setDropRow(-1, dropOperation: .on)
         return .copy
     }
