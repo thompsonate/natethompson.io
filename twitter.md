@@ -1,3 +1,3 @@
 ---
-redirect_to: https://twitter.com/natethomps0n
+redirect_to: https://twitter.com/natethompson
 ---
