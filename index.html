@@ -5,43 +5,47 @@ nav_title: Home
 nav_order: 1
 ---
 
-<div class="bio">
+<section class="bio">
   <h4>Hi, I’m Nate!</h4>
   <ul>
-    <li>Full time Computer Science student at Georgia State University in Atlanta</li>
-    <li>Part time macOS & iOS developer</li>
-    <li>Small time hacker</li>
+    <li>I'm an iOS & macOS developer from Georgia, USA.</li>
+    <li>I'm currently looking for a full-time job! If you'd like to talk, feel free to <a href="mailto:nate@natethompson.io">send me an email</a>.</li>
+    <li>I recently graduated from Georgia State University with a B.S. in Computer Science.</li>
+    <li>Last year I interned at Apple, where I worked on prototying new functionality for their embedded diagnostics software.</li>
   </ul>
-</div>
+</section>
 
-{% assign projects = site.data.projects.large %}
-{% for project in projects %}
-<div class="project-large" style="
-    color: {{ project.text_color }};
-    background-color: {{ project.image.background_color }};
-    {% if project.image.generate %}
-    background-image: {{ project.image.generate }};
-    {% else %}
-    background-image: url({{ project.image.url }});
-    {% endif %}
-  "}</style>
-  <div>
-    <div class="project-icon"><img src="{{ site.baseurl }}{{ project.icon.url }}" alt="{{ project.icon.alt }}"></div>
-    <div class="project-text">
-        <div>
-            <h2>{{ project.name }}</h2>
-            <p>{{ project.tagline }}</p>
-        </div>
+<section class="projects">
+  <h3>My Projects</h3>
+  <hr>
+  {% assign projects = site.data.projects.large %}
+  {% for project in projects %}
+  <div class="project-large" style="
+      color: {{ project.text_color }};
+      background-color: {{ project.image.background_color }};
+      {% if project.image.generate %}
+      background-image: {{ project.image.generate }};
+      {% else %}
+      background-image: url({{ project.image.url }});
+      {% endif %}
+  ">
+    <div>
+      <div class="project-icon"><img src="{{ site.baseurl }}{{ project.icon.url }}" alt="{{ project.icon.alt }}"></div>
+      <div class="project-text">
+          <div>
+              <h2>{{ project.name }}</h2>
+              <p>{{ project.tagline }}</p>
+          </div>
+      </div>
+      <a href="{{ project.link }}">
+          <span></span>
+      </a>
     </div>
-    <a href="{{ project.link }}">
-        <span></span>
-    </a>
   </div>
-</div>
-{% endfor %}
+  {% endfor %}
+</section>
 
-
-<div class="hackathons">
+<section class="hackathons">
   <h3>Hackathons</h3>
   <hr>
   <div class="project-grid">
@@ -62,4 +66,4 @@ nav_order: 1
     <a href="{{ project.link.url }}">{{ project.link.title }}</a>
   </div>
 {% endfor %}
-</div>
+</section>
