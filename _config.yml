@@ -46,7 +46,7 @@ theme_settings:
   youtube:
 
   # Scripts / Features
-  google_analytics: UA-91065230-1 # Tracking ID, e.g. "UA-000000-01"
+  google_analytics: # Tracking ID, e.g. "UA-000000-01"
   disqus_shortname: natethompson
   katex: false # Enable if using math markup
   portfolio: false
