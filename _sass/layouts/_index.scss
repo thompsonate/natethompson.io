@@ -8,6 +8,9 @@ article {
   padding-top: 0;
 }
 
+h1 {
+  font-size: 1.5em
+}
 
 // Header text feature
 .call-out {
@@ -153,7 +156,7 @@ article {
 }
 
 
-h3 {
+h1 {
   margin-bottom: 0;
   @media (max-width: $break) {
       font-size: 20pt;
@@ -166,6 +169,10 @@ hr {
 
 .projects {
   margin-bottom: 35px;
+
+  li {
+    list-style: none;
+  }
 }
 .project-large {
   margin: 20px 0px;
@@ -225,6 +232,9 @@ hr {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    a {
+      color: white;
+    }
     h2 {
       font-size: 24pt;
       margin: 0;
@@ -255,7 +265,7 @@ hr {
 
   .project-small {
     flex-basis: 48%;
-    margin-top: 30px;
+    margin-top: 25px;
 
     div {
       height: 175px;
@@ -269,7 +279,7 @@ hr {
     }
 
     h4 {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     p {
@@ -278,7 +288,9 @@ hr {
     }
 
     a {
-      font-size: 12pt;
+      font-size: 14pt;
+      color: $link-color;
+
       span {
         position: absolute;
         width:100%;
@@ -305,6 +317,10 @@ hr {
     .project-small {
       flex-basis: 100%;
       margin: 0 0 30px 0;
+
+      a {
+        font-size: 16pt;
+      }
 
       h4 {
           font-size: 16pt;

@@ -15,41 +15,37 @@ hackathons:
     description:
       primary: The world’s first web client for Siri.
       secondary: Won second place at HackCU 2017 in Boulder, CO
-    link:
-      title: View on Devpost
-      url: https://devpost.com/software/siriquery
+    link: https://devpost.com/software/siriquery
     image:
       url: /assets/img/siriquery.png
+      alt: SiriQuery icon
 
   - name: Telephone Pictionary
     description:
       primary: A party game that combines Pictionary with the confusion of Telephone.
       secondary: Won “Most Technical Hack” at DerbyHacks 2017 in Louisville, KY
-    link:
-      title: View on Devpost
-      url: https://devpost.com/software/telephone-pictionary
+    link: https://devpost.com/software/telephone-pictionary
     image:
       url: /assets/img/tel-pictionary.png
+      alt: Playing Telephone Pictionary on three phones
       background_color: '#1F1213'
 
   - name: Nametag AR
     description:
       primary: An AR app that detects and displays the names of people you’ve met.
       secondary: Built at HackGT 2017 in Atlanta, GA
-    link:
-      title: View on Devpost
-      url: https://devpost.com/software/nametag-ar
+    link: https://devpost.com/software/nametag-ar
     image:
       url: /assets/img/nametag.jpg
+      alt: "Screenshot of face with AR nametag"
       background_color: '#261D12'
 
   - name: Twitter Assistants
     description:
       primary: A Twitter bot that automatically interfaces with Siri, Alexa, and Google Assistant.
       secondary: Built at MinneHack 2018 in Minneapolis, MN
-    link:
-      title: View on Devpost
-      url: https://devpost.com/software/twitter-assistants
+    link: https://devpost.com/software/twitter-assistants
     image:
       url: /assets/img/twitter_asst.png
+      alt: Twitter Assistants icon
       background_color: '#141D26'

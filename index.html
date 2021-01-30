@@ -1,26 +1,25 @@
 ---
-layout: page
+layout: default
 title: Nate Thompson
 nav_title: Home
 nav_order: 1
 ---
-
-<section class="bio">
-  <h4>Hi, I’m Nate!</h4>
-  <ul>
+<article>
+  <ul class="bio">
+    <h4>Hi, I’m Nate!</h4>
     <li>I'm an iOS & macOS developer from Georgia, USA.</li>
-    <li>I'm currently looking for a full-time job! If you'd like to talk, feel free to <a href="mailto:nate@natethompson.io">send me an email</a>.</li>
+    <li>I'm currently looking for a full-time job! If you'd like to talk, feel free to <a href="mailto:{{ site.email_address }}">send me an email</a>.</li>
     <li>I recently graduated from Georgia State University with a B.S. in Computer Science.</li>
-    <li>Last year I interned at Apple, where I worked on prototying new functionality for their embedded diagnostics software.</li>
+    <li>Last year I interned at Apple, where I worked on prototyping new functionality for their embedded diagnostics software.</li>
   </ul>
-</section>
-
-<section class="projects">
-  <h3>My Projects</h3>
+  
   <hr>
-  {% assign projects = site.data.projects.large %}
-  {% for project in projects %}
-  <div class="project-large" style="
+  <section class="projects">
+    <h1>My Projects</h1>
+    <ul>
+      {% assign projects = site.data.projects.large %}
+      {% for project in projects %}
+      <li class="project-large" style="
       color: {{ project.text_color }};
       background-color: {{ project.image.background_color }};
       {% if project.image.generate %}
@@ -28,42 +27,42 @@ nav_order: 1
       {% else %}
       background-image: url({{ project.image.url }});
       {% endif %}
-  ">
-    <div>
-      <div class="project-icon"><img src="{{ site.baseurl }}{{ project.icon.url }}" alt="{{ project.icon.alt }}"></div>
-      <div class="project-text">
+      ">
+      <div>
+        <div class="project-icon"><img src="{{ site.baseurl }}{{ project.icon.url }}" alt="{{ project.icon.alt }}"></div>
+        <div class="project-text">
           <div>
-              <h2>{{ project.name }}</h2>
-              <p>{{ project.tagline }}</p>
+            <a href="{{ project.link }}"><h2>{{ project.name }}</h2></a>
+            <p>{{ project.tagline }}</p>
           </div>
+        </div>
+        <a aria-hidden="true" href="{{ project.link }}"><span></span></a>
       </div>
-      <a href="{{ project.link }}">
-          <span></span>
-      </a>
-    </div>
-  </div>
-  {% endfor %}
+    </li>
+    {% endfor %}
+  </ul>
 </section>
 
-<section class="hackathons">
-  <h3>Hackathons</h3>
-  <hr>
-  <div class="project-grid">
-
-  {% assign projects = site.data.projects.hackathons %}
-  {% for project in projects %}
-  <div class="project-small">
-    <div style="
-    background-image: url('{{ site.baseurl }}{{ project.image.url }}');
-    background-size: auto 200px;
-    background-color: {{ project.image.background_color }}
-    ">
-      <a href="{{ project.link.url }}"><span></span></a>
+<hr>
+<section class="projects">
+  <h1>Hackathons</h1>
+  <ul class="project-grid">
+    
+    {% assign projects = site.data.projects.hackathons %}
+    {% for project in projects %}
+    <li class="project-small">
+      <div role="img" alt="{{ project.image.alt }}" style="
+      background-image: url('{{ site.baseurl }}{{ project.image.url }}');
+      background-size: auto 200px;
+      background-color: {{ project.image.background_color }}
+      ">
+      <a href="{{ project.link }}"><span></span></a>
     </div>
-    <h4>{{ project.name }}</h4>
+    <h4><a href="{{ project.link }}">{{ project.name }}</a></h4>
     <p>{{ project.description.primary }}</p>
     <p>{{ project.description.secondary }}</p>
-    <a href="{{ project.link.url }}">{{ project.link.title }}</a>
-  </div>
-{% endfor %}
+  </li>
+  {% endfor %}
+</ul>
 </section>
+</article>
