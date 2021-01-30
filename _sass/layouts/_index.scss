@@ -131,7 +131,7 @@ h1 {
       }
   }
 
-  h4 {
+  h1 {
     font-family: "Menlo", "Consolas", monospace;
     font-size: 16pt;
     margin: 15px 0;
@@ -278,8 +278,9 @@ hr {
       box-shadow: 0 3px 8px rgba(0,0,0,0.35);
     }
 
-    h4 {
-      margin-bottom: 5px;
+    h2 {
+      margin: 0;
+      padding: 5px 0px;
     }
 
     p {
