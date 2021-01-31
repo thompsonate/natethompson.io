@@ -8,31 +8,11 @@ $padding-large: 20%;
 $padding-small: 5%;
 $padding-x-small: 3%;
 
-// Brand colours
-$brand-color: #fff;
-$background-color: #fff;
-$border-color: rgba(0, 0, 0, 0.1); // rgba recommended if using feature images
-
-// Typography colours
-$text-color: #383838;
-$link-color: #507492; // #1ABC9C;
-$selection-color: null; // visible when highlighting text
-$blockquote-color: #EEF7FA; // $background-color;
-
-// Tags color
-$tags-color: #b0b0b0;
-
-//Search color
-$link-shadow: transparentize($link-color, .6);//rgba(26, 188, 156, 0.6);
-$text-shadow: #3f3f3f;
-$search-color: #999;
-
-// Header colours
-$header-link-color: #383838;
-
 // Feature image for articles
 $feature-image-text-color: #fff;
 $feature-image-size: cover; // options include "cover", "contain", "auto"
+
+$shadow-color: rgba(0,0,0,0.20);
 
 // Header description box
 $header-desc-background-color: #507492;
@@ -42,17 +22,123 @@ $header-desc-text-color: #FFF;
 $break: 700px;
 $sm-break: 450px;
 
+// Themes usage: 
+// @include themed() {
+//   color: t($text);
+// }
+// https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995
+$themes: (
+    light: (
+        // Brand colors
+        brand-color: #f8f8f8,
+        background-color: #f8f8f8,
+        border-color: rgba(0, 0, 0, 0.1), // rgba recommended if using feature images
+
+        // Typography colors
+        text-color: #383838,
+        secondary-text-color: #696969,
+        link-color: #507492, // #1ABC9C;
+        selection-color: null, // visible when highlighting text
+        blockquote-color: #EEF7FA, // $background-color;
+        blockquote-border: #9ed2e3,
+
+        card-background-color: #fff,
+        card-border-color: #fff,
+
+        code-background-color: #d6d6d6,
+
+        // Tags color
+        tags-color: #b0b0b0,
+
+        //Search color
+        link-shadow: transparentize(#507492, .6), //rgba(26, 188, 156, 0.6);
+        text-shadow: #3f3f3f,
+        search-color: #999,
+
+        // Header colors
+        header-link-color: #383838,
+
+    ),
+    dark: (
+        // Brand colors
+        brand-color: #181818,
+        background-color: #181818,
+        border-color: #444444,
+
+        // Typography colors
+        text-color: #fff,
+        secondary-text-color: #a1a1a1,
+        link-color: #7fb9e9,
+        selection-color: null,  
+        blockquote-color: #2c2c2c,
+        blockquote-border: #696969,
+
+        card-background-color: #2c2c2c,
+        card-border-color: #444444,
+
+        code-background-color: #424242,
+
+        // Tags color
+        tags-color: #b0b0b0,
+
+        //Search color
+        link-shadow: transparentize(#7fb9e9, .6),
+        text-shadow: #3f3f3f,
+        search-color: #999,
+
+        // Header colors
+        header-link-color: #fff,
+    ),
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    @media (prefers-color-scheme: #{$theme}) {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}
+
+$brand-color: 'brand-color';
+$background-color: 'background-color';
+$border-color: 'border-color';
+$text-color: 'text-color';
+$secondary-text-color: 'secondary-text-color';
+$link-color: 'link-color';
+$selection-color: 'selection-color';
+$blockquote-color: 'blockquote-color';
+$blockquote-border: 'blockquote-border';
+$card-background-color: 'card-background-color';
+$card-border-color: 'card-border-color';
+$code-background-color: 'code-background-color';
+$tags-color: 'tags-color';
+$link-shadow: 'link-shadow';
+$text-shadow: 'text-shadow';
+$search-color: 'search-color';
+$header-link-color: 'header-link-color';
+
+
 
 /*  Syntax highlighting  */
 // Syntax typography
 $monospace: Monaco, Consolas, "Lucida Console", monospace !default;
 $font-size-code: 0.85em !default; // ~12px
-$border-radius: 4px !default;
+$border-radius: 10px !default;
 
 
 
 // base16 Material Theme
-$base00: #263238 !default;  // Default Background
+$base00: #22323f !default;  // Default Background
 $base01: #2E3C43 !default;  // Lighter Background (Used for status bars)
 $base02: #314549 !default;  // Selection Background
 $base03: #546E7A !default;  // Comments, Invisibles, Line Highlighting

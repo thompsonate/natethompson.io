@@ -52,7 +52,9 @@ h1 {
         margin-bottom: 0;
         display: inline-block;
         background-size: $feature-image-size;
-        border-bottom: 1px solid $border-color;
+        @include themed() {
+          border-bottom: 1px solid t($border-color);
+        }
         p a {
             @extend .body-link;
         }
@@ -109,13 +111,15 @@ h1 {
   padding: 0 6%;
   width: 100%;
 
-  background-color: #f0efef;
-  border-color: #979797;
+  @include themed() {
+    background-color: t($card-background-color);
+    border-color: t($card-border-color);
+  }
   border-width: 1px;
   border-style: solid;
 
   position: relative;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.20);
+  box-shadow: 0 3px 8px $shadow-color;
   border-radius: 15px;
   overflow: hidden;
 
@@ -290,7 +294,9 @@ hr {
 
     a {
       font-size: 14pt;
-      color: $link-color;
+      @include themed() {
+        color: t($link-color);
+      }
 
       span {
         position: absolute;
@@ -303,7 +309,9 @@ hr {
     }
 
     p:nth-of-type(2) {
-      color: gray;
+      @include themed() {
+        color: t($secondary-text-color);
+      }
     }
   }
 }

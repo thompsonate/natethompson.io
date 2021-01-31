@@ -3,8 +3,12 @@
     display: inline-block;
     text-align: center;
     width: 100%;
-    color: lighten($text-color, 30%);
     font-size: 0.9em;
+
+    @include themed() {
+        color: t($secondary-text-color);
+    }
+
 
     .footer-icons {
         margin-bottom: 6%;
@@ -12,6 +16,12 @@
             list-style: none;
             li {
                 display: inline;
+
+                .fa-inverse {
+                    @include themed() {
+                        color: t($background-color);
+                    }
+                }
             }
         }
     }

@@ -13,7 +13,9 @@
 
     .tag {
         margin-right: 0.5em;
-        color: $tags-color;
+        @include themed() {
+            color: t($tags-color);
+        }
     }
     
     p {
@@ -24,7 +26,9 @@
 .tag-anchor {
     margin-bottom: $padding-x-small;
     a {
-        color: $link-color;
+        @include themed() {
+            color: t($link-color);
+        }
 
         &:hover {
             text-decoration: none;
@@ -48,5 +52,8 @@
         float: right;
         font-size: 0.7em;
         line-height: normal;
+        @include themed() {
+            color: t($secondary-text-color);
+        }
     }
 }

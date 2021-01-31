@@ -27,7 +27,6 @@ footer {
     display: inline-block;
     text-align: center;
     .meta {
-        color: rgba($text-color, .5);
         letter-spacing: 0.1em;
         display: inline;
         text-transform: uppercase;
@@ -44,7 +43,9 @@ header {
 }
 
 .meta {
-    color: rgba($text-color, .5);
+    @include themed() {
+        color: t($secondary-text-color);
+    }
     font-size: 0.9em;
     letter-spacing: 0.1em;
     margin: 0;
