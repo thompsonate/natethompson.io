@@ -8,7 +8,7 @@ thumbnail: assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-hero.jpg
 I recently tried to implement drag and drop with `NSTableView` in a project and ran into a bunch of issues with finding resources that actually helped. Such is the life of a Cocoa developer. So here's my attempt at the _definitive guide_ to drag and drop with `NSTableView`. (This should also apply to `NSOutlineView`, since they work in a similar way.)
 <!-- break -->
 
-![Fruits App screenshot]({{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-app.png)
+![Fruits App screenshot]({{ site.baseurl }}/assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-hero.jpg)
 In this tutorial, you'll make an app that has two table views, each containing a list of fruits. By the end of the tutorial, you'll be able to:
 * drag a fruit name to the other table view to copy it over
 * drag and drop to reorder the items within a table view
@@ -37,7 +37,7 @@ Drag and drop is implemented with a dragging pasteboard. When a drag starts, you
 ---
 {% include section.html name="🍑 Writing to the Pasteboard" %}
 
-The first delegate method to implement is `tableView(_:pasteboardWriterForRow:)` in `LeftTableViewController`. The function has a return type that conforms to the procotol `NSPasteboardWriting`. `NSString` does, so you can just cast the `String` to `NSString` and return that.
+The first delegate method to implement is `tableView(_:pasteboardWriterForRow:)` in `LeftTableViewController`. The function has a return type that conforms to the protocol `NSPasteboardWriting`. `NSString` does, so you can just cast the `String` to `NSString` and return that.
 ```swift
 func tableView(
     _ tableView: NSTableView, 

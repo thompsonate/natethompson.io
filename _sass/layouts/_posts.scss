@@ -20,6 +20,10 @@ article {
     hr {
         margin: 3em 0;
     }
+    img, video {
+        border-radius: 10px;
+        box-shadow: 0 2px 5px $shadow-color;
+    }
 }
 
 footer {
