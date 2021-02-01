@@ -124,6 +124,11 @@ h1 {
 
 .clickable {
   cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(0.97);
+  }
 }
 
 .bio {
@@ -234,6 +239,7 @@ hr {
     }
     a {
       color: white;
+      text-decoration: none;
     }
     h2 {
       font-size: 24pt;
@@ -292,8 +298,16 @@ hr {
     
     a {
       font-size: 14pt;
-      @include themed() {
-        color: t($link-color);
+    }
+
+    &:hover {
+      .main-link {
+        text-decoration: none;
+        transition: 0.2s;
+
+        @include themed() {
+          color: t($link-color);
+        }
       }
     }
     
