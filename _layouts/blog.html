@@ -15,9 +15,9 @@ layout: default
     {% if post.hide != true %}
     <div class="post-teaser">
       {% if post.thumbnail %} 
-      <div class="post-img">
-        <img src="{{ site.baseurl }}/{{ post.thumbnail }}">
-        <a href="{{ post.url | prepend: site.baseurl }}">
+      <div class="post-img" role="img" alt="{{ post.thumbnail_alt }}">
+        <img src="{{ site.baseurl }}/{{ post.thumbnail }}" alt="{{ post.thumbnail_alt }}">
+        <a href="{{ post.url | prepend: site.baseurl }}" title="{{ post.title }}">
           <span></span>
         </a>
       </div>

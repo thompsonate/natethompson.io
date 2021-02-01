@@ -3,6 +3,7 @@ layout: post
 title: Using Drag and Drop with NSTableView
 tags: [macOS, Tutorial]
 thumbnail: assets/img/blog/2019-03-23-nstableview-drag-and-drop/fruits-hero.jpg
+thumbnail_alt: Drag and Drop Fruits app
 ---
 
 I recently tried to implement drag and drop with `NSTableView` in a project and ran into a bunch of issues with finding resources that actually helped. Such is the life of a Cocoa developer. So here's my attempt at the _definitive guide_ to drag and drop with `NSTableView`. (This should also apply to `NSOutlineView`, since they work in a similar way.)
