@@ -14,134 +14,138 @@ h1 {
 
 // Header text feature
 .call-out {
-    @extend %padding-regular;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    background-color: $header-desc-background-color;
-    font-size: 1.2em;
-    text-align: center;
-    color: $header-desc-text-color;
-    background-repeat: no-repeat;
-    background-size: $feature-image-size;
-
-    /* --- Responsive --- */
-    @media screen and (max-width: 850px) {
-        background-size: 100% auto;
-    }
-
-    //For white images
-    p, a, li, h1, h2, h3, h4, h5 {
-        @extend .header-txt-shadow;
-    }
-
-    p:last-child {
-        margin-bottom: 0;
-    }
+  @extend %padding-regular;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: $header-desc-background-color;
+  font-size: 1.2em;
+  text-align: center;
+  color: $header-desc-text-color;
+  background-repeat: no-repeat;
+  background-size: $feature-image-size;
+  
+  /* --- Responsive --- */
+  @media screen and (max-width: 850px) {
+    background-size: 100% auto;
+  }
+  
+  //For white images
+  p, a, li, h1, h2, h3, h4, h5 {
+    @extend .header-txt-shadow;
+  }
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 #main {
-    background-position: 100% 0px, 0% center, center top;
+  background-position: 100% 0px, 0% center, center top;
 }
 
 // Post listing
 .posts {
-    .post-teaser {
-        @extend %padding-regular;
-        width: 100%;
-        margin-bottom: 0;
-        display: inline-block;
-        background-size: $feature-image-size;
-        @include themed() {
-          border-bottom: 1px solid t($border-color);
-        }
-        p a {
-            @extend .body-link;
-        }
-        img {
-            padding: 0;
-            vertical-align: middle;
-        }
-
-        .post-img {
-            vertical-align: middle;
-            border-radius: 25px;
-            overflow: hidden;
-            position: relative;
-
-            @media (min-width: $break) {
-                height: 250px;
-            }
-
-            //Smaller screen
-            @media screen and (max-width: $break) {
-                height: 150px;
-            }
-
-            a {
-              span {
-                position: absolute;
-                width:100%;
-                height:100%;
-                top:0;
-                left: 0;
-                z-index: 1;
-              }
-            }
-        }
-
-        .post-img img {
-            -moz-transition-timing-function: ease-out;
-            -webkit-transition-timing-function: ease-out;
-            transition-timing-function: ease-out;
-
-            -moz-transition: all 5s;
-            -webkit-transition: all 5s;
-            transition: all 5s;
-        }
+  .post-teaser {
+    @extend %padding-regular;
+    width: 100%;
+    margin-bottom: 0;
+    display: inline-block;
+    background-size: $feature-image-size;
+    @include themed() {
+      border-bottom: 1px solid t($border-color);
     }
-    .excerpt {
-        margin-top: 1em;
+    p a {
+      @extend .body-link;
     }
+    img {
+      padding: 0;
+      vertical-align: middle;
+    }
+    
+    .post-img {
+      vertical-align: middle;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      
+      @media (min-width: $break) {
+        height: 250px;
+      }
+      
+      //Smaller screen
+      @media screen and (max-width: $break) {
+        height: 150px;
+      }
+      
+      a {
+        span {
+          position: absolute;
+          width:100%;
+          height:100%;
+          top:0;
+          left: 0;
+          z-index: 1;
+        }
+      }
+    }
+    
+    .post-img img {
+      -moz-transition-timing-function: ease-out;
+      -webkit-transition-timing-function: ease-out;
+      transition-timing-function: ease-out;
+      
+      -moz-transition: all 5s;
+      -webkit-transition: all 5s;
+      transition: all 5s;
+    }
+  }
+  .excerpt {
+    margin-top: 1em;
+  }
 }
 
+
+.card {
+  @media (prefers-color-scheme: dark) {
+    border-width: 1px;
+    border-style: solid;  
+  }
+  @include themed() {
+    background-color: t($card-background-color);
+    border-color: t($card-border-color);
+  }
+  
+  position: relative;
+  box-shadow: 0 3px 8px $shadow-color;
+  border-radius: 15px;
+  overflow: hidden;
+}
 
 .bio {
   margin-bottom: 35px;
   padding: 0 6%;
   width: 100%;
-
-  @include themed() {
-    background-color: t($card-background-color);
-    border-color: t($card-border-color);
-  }
-  border-width: 1px;
-  border-style: solid;
-
-  position: relative;
-  box-shadow: 0 3px 8px $shadow-color;
-  border-radius: 15px;
-  overflow: hidden;
-
+  
   @media (max-width: $break) {
-      min-height: 175px;
-      height: auto;
-      display: block;
-      overflow: auto;
-
-      padding: 0 6% 0 8%;
-      @media (max-width: 400px) {
-          padding: 0 6% 0 10%;
-      }
+    min-height: 175px;
+    height: auto;
+    display: block;
+    overflow: auto;
+    
+    padding: 0 6% 0 8%;
+    @media (max-width: 400px) {
+      padding: 0 6% 0 10%;
+    }
   }
-
+  
   h1 {
     font-family: "Menlo", "Consolas", monospace;
     font-size: 16pt;
     margin: 15px 0;
   }
   ul {
-      margin-bottom: 15px;
+    margin-bottom: 15px;
   }
   li {
     margin: 0;
@@ -163,7 +167,7 @@ h1 {
 h1 {
   margin-bottom: 0;
   @media (max-width: $break) {
-      font-size: 20pt;
+    font-size: 20pt;
   }
 }
 hr {
@@ -173,7 +177,7 @@ hr {
 
 .projects {
   margin-bottom: 35px;
-
+  
   li {
     list-style: none;
   }
@@ -183,19 +187,7 @@ hr {
   height: 175px;
   width: 100%;
   position: relative;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
-  border-radius: 15px;
-  overflow: hidden;
-
-  span {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-
+  
   .project-icon {
     height: 175px;
     width: 35%;
@@ -231,10 +223,10 @@ hr {
     }
     text-align: left;
     div {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     a {
       color: white;
@@ -243,19 +235,19 @@ hr {
       font-size: 24pt;
       margin: 0;
       @media (max-width: $break) {
-          font-size: 20pt;
+        font-size: 20pt;
       }
     }
     p {
       margin-top: 10px;
       @media (max-width: $break) {
-          font-size: 13pt;
+        font-size: 13pt;
       }
       @media (max-width: 550px) {
-          font-size: 12pt;
+        font-size: 12pt;
       }
       @media (max-width: 450px) {
-          font-size: 12pt;
+        font-size: 12pt;
       }
     }
   }
@@ -266,48 +258,41 @@ hr {
   flex-flow: row wrap;
   justify-content: space-between;
   margin-top: -10px;
-
+  
   .project-small {
     flex-basis: 48%;
     margin-top: 25px;
-
+    padding-bottom: 2%;
+    
     div {
       height: 175px;
       width: 100%;
-      position: relative;
       background-position: center center;
       background-repeat: no-repeat;
       overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.35);
     }
-
+    
+    h2, p, a {
+      padding: 0 6%;
+    }
+    
     h2 {
       margin: 0;
       padding: 5px 0px;
     }
-
+    
     p {
       font-size: 12pt;
       margin-bottom: 3px;
     }
-
+    
     a {
       font-size: 14pt;
       @include themed() {
         color: t($link-color);
       }
-
-      span {
-        position: absolute;
-        width:100%;
-        height:100%;
-        top:0;
-        left: 0;
-        z-index: 1;
-      }
     }
-
+    
     p:nth-of-type(2) {
       @include themed() {
         color: t($secondary-text-color);
@@ -322,17 +307,17 @@ hr {
     margin: 15px auto 0 auto;
     float: none;
     max-width: 350px;
-
+    
     .project-small {
       flex-basis: 100%;
       margin: 0 0 30px 0;
-
+      
       a {
         font-size: 16pt;
       }
-
+      
       h4 {
-          font-size: 16pt;
+        font-size: 16pt;
       }
     }
   }
@@ -342,16 +327,16 @@ hr {
 
 // Pagination
 .pagination .button {
-    margin: 0 1.5em;
-    i {
-        vertical-align: middle;
-    }
+  margin: 0 1.5em;
+  i {
+    vertical-align: middle;
+  }
 }
 
 .pagination {
-    padding: $padding-small $padding-large 0 $padding-large;
-    text-align: center;
-    @media (max-width: 600px) {
-        padding: $padding-small;
-    }
+  padding: $padding-small $padding-large 0 $padding-large;
+  text-align: center;
+  @media (max-width: 600px) {
+    padding: $padding-small;
+  }
 }
