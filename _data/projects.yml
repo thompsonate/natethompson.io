@@ -36,9 +36,9 @@ hackathons:
       secondary: Built at HackGT 2017 in Atlanta, GA
     link: https://devpost.com/software/nametag-ar
     image:
-      url: /assets/img/nametag.jpg
+      url: /assets/img/nametag.png
       alt: "Screenshot of face with AR nametag"
-      background_color: '#261D12'
+      background_color: '#DBD3CB'
 
   - name: Twitter Assistants
     description:
