@@ -10,6 +10,29 @@ large:
       generate: 'linear-gradient(120deg, #4179f4, #f4a941)'
       background_color: '#4179f4'
 
+
+apps:
+  - name: Food Sense
+    role: Contributor
+    description:
+      primary: Identify your potential food sensitivities and minimize reactions.
+    link: https://apps.apple.com/us/app/food-sense-guide/id1457896728
+    image:
+      url: /assets/img/food-sense.png
+      alt: Food Sense icon
+      background_color: '#F8F2FF'
+
+  - name: Mideo
+    role: Contributor
+    description:
+      primary: Play music while you record video.
+    link: https://apps.apple.com/us/app/mideo-record-video-with-music/id1358135284
+    image:
+      url: /assets/img/mideo.png
+      alt: Mideo icon
+      background_color: '#F2F2F7'
+
+
 hackathons:
   - name: SiriQuery
     description:
