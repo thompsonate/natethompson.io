@@ -8,8 +8,17 @@
 
 %padding-regular {
     padding: $padding-small $padding-large;
+    @media (max-width: 1100px) {
+        padding: $padding-small $padding-large / 1.2;
+    }
     @media (max-width: 1000px) {
-        padding: $padding-small * 1.5 $padding-large / 1.6;
+        padding: $padding-small $padding-large / 1.5;
+    }
+    @media (max-width: 900px) {
+        padding: $padding-small $padding-large / 1.8;
+    }
+    @media (max-width: 800px) {
+        padding: $padding-small $padding-small * 1.5;
     }
     @media (max-width: 576px) {
         padding: $padding-small;
