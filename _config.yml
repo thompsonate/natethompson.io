@@ -6,7 +6,7 @@ url: "http://www.natethompson.io"
 theme_settings:
   # Meta
   title: Nate Thompson
-  avatar: assets/img/avatar.png
+  avatar: assets/img/avatar.svg
   favicon: /favicon.ico
   gravatar: # Email MD5 hash
   description: "Hi, I’m Nate! Computer Science student at Georgia State University. macOS & iOS developer." # used by search engines
